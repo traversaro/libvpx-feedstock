@@ -1,13 +1,13 @@
 {% set name = "libvpx" %}
-{% set version = "1.14.1" %}
+{% set version = "1.15.2" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://download.videolan.org/contrib/vpx/libvpx-{{ version }}.tar.gz
-  sha256: 901747254d80a7937c933d03bd7c5d41e8e6c883e0665fadcb172542167c7977
+  url:  https://github.com/webmproject/libvpx/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 26fcd3db88045dee380e581862a6ef106f49b74b6396ee95c2993a260b4636aa
 
 build:
   number: 0
