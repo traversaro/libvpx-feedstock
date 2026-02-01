@@ -15,6 +15,10 @@ else
   CPU_DETECT="--enable-runtime-cpu-detect"
 fi
 
+# Set target for Windows when using autotools_clang_conda
+if [[ ${target_platform} == win-64 ]]; then
+  TARGET="--target=x86_64-win64-vs17"
+fi
 
 ./configure --prefix=${PREFIX} ${TARGET} \
             --as=yasm                    \
@@ -29,6 +33,8 @@ fi
             --enable-pic                 \
             ${CPU_DETECT}                \
             --enable-experimental || { cat config.log; exit 1; }
+
+[[ "$target_platform" == "win-64" ]] && patch_libtool
 
 make -j${CPU_COUNT} V=1
 make install
